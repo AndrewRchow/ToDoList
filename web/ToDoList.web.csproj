@@ -286,6 +286,16 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\ToDoList.Models.csproj">
+      <Project>{4bdc0d77-e559-4181-85b7-6ba3a31c3dc2}</Project>
+      <Name>ToDoList.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\services\ToDoList.services.csproj">
+      <Project>{e7fe007f-cfa4-4c87-a469-cf8514eb1575}</Project>
+      <Name>ToDoList.services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
