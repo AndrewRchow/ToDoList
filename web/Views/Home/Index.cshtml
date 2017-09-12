@@ -1,4 +1,22 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div>
+    <div ng-controller="IndexController as IndexCtr">
+        <h3>TO DO LIST</h3>
+        <button class="btn btn-primary" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
+        <div class="SectionContainer container">         
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/mainApp.js"></script>
+<script src="~/Scripts/Index/IndexService.js"></script>
+<script src="~/Scripts/Index/SectionDirective.js"></script>
+<script src="~/Scripts/Index/IndexController.js"></script>
 

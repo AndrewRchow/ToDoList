@@ -1,0 +1,5 @@
+C:\REPOS\github\ToDoList\Models\bin\Debug\ToDoList.Models.dll
+C:\REPOS\github\ToDoList\Models\bin\Debug\ToDoList.Models.pdb
+C:\REPOS\github\ToDoList\Models\obj\Debug\ToDoList.Models.dll
+C:\REPOS\github\ToDoList\Models\obj\Debug\ToDoList.Models.pdb
+C:\REPOS\github\ToDoList\Models\obj\Debug\ToDoList.Models.csprojResolveAssemblyReference.cache

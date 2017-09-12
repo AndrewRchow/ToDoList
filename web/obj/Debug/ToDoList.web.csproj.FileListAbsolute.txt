@@ -100,3 +100,7 @@ C:\REPOS\github\ToDoList\web\bin\Microsoft.AI.Web.xml
 C:\REPOS\github\ToDoList\web\obj\Debug\ToDoList.web.csprojResolveAssemblyReference.cache
 C:\REPOS\github\ToDoList\web\obj\Debug\ToDoList.web.dll
 C:\REPOS\github\ToDoList\web\obj\Debug\ToDoList.web.pdb
+C:\REPOS\github\ToDoList\web\bin\ToDoList.Models.dll
+C:\REPOS\github\ToDoList\web\bin\ToDoList.services.dll
+C:\REPOS\github\ToDoList\web\bin\ToDoList.Models.pdb
+C:\REPOS\github\ToDoList\web\bin\ToDoList.services.pdb

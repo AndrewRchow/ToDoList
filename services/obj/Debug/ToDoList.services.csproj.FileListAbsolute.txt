@@ -1,0 +1,7 @@
+C:\REPOS\github\ToDoList\services\bin\Debug\ToDoList.services.dll
+C:\REPOS\github\ToDoList\services\bin\Debug\ToDoList.services.pdb
+C:\REPOS\github\ToDoList\services\bin\Debug\ToDoList.Models.dll
+C:\REPOS\github\ToDoList\services\bin\Debug\ToDoList.Models.pdb
+C:\REPOS\github\ToDoList\services\obj\Debug\ToDoList.services.csprojResolveAssemblyReference.cache
+C:\REPOS\github\ToDoList\services\obj\Debug\ToDoList.services.dll
+C:\REPOS\github\ToDoList\services\obj\Debug\ToDoList.services.pdb
