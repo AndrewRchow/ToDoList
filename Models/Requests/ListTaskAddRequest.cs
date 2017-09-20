@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoList.Models.Domain
+namespace ToDoList.Models.Requests
 {
-    public class ListSection
+    public class ListTaskAddRequest
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        public string Section { get; set; }
+        public int SectionId { get; set; }
+        public string Task { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }

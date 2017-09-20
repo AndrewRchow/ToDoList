@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoList.Models.Domain
+namespace ToDoList.Models.Requests
 {
-    public class ListSection
+    public class ListSectionAddRequest
     {
-        public int Id { get; set; }
         public string UserId { get; set; }
         public string Section { get; set; }
         public DateTime DateCreated { get; set; }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Models.Domain
 {
-    public class ListSection
+    public class ListTask
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
-        public string Section { get; set; }
+        public int SectionId { get; set; }
+        public string Task { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }

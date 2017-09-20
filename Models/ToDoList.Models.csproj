@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ListTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\ListSection.cs" />
+    <Compile Include="Requests\ListSectionAddRequest.cs" />
+    <Compile Include="Requests\ListSectionUpdateRequest.cs" />
+    <Compile Include="Requests\ListTaskAddRequest.cs" />
+    <Compile Include="Requests\ListTaskUpdateRequest.cs" />
+    <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\ErrorReseponse.cs" />
+    <Compile Include="Response\ItemResponse.cs" />
+    <Compile Include="Response\ItemsResponse.cs" />
+    <Compile Include="Response\SuccessResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
