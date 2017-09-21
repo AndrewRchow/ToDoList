@@ -53,9 +53,6 @@
             } else {
                 vm.sectionData.Section = userInput;
                 vm.newSection = userInput;
-                vm.newSectionId;
-                var compiledSection = $compile("<Section-Text></Section-Text>")($scope);
-                $(".SectionContainer").append(compiledSection);
                 $(event.target).closest(".sectionRow").remove();
                 vm.AddingSection = false;
                 vm.IndexService.postSection(vm.sectionData)
@@ -66,6 +63,9 @@
         function _postSectionSuccess(response) {
             console.log(response.data.Item);
             vm.newSectionId = response.data.Item;
+            var compiledSection = $compile("<Section-Text></Section-Text>")($scope);
+            $(".SectionContainer").append(compiledSection);
+            
             
         }
         function _postSectionError(error) {
@@ -74,6 +74,7 @@
 
         function _deleteSectionBtn(event) {
             $(event.target).attr('id', 'deleteClicked');
+            alert("Hello! I am an alert box!!");
             vm.sectionData.Id = parseInt($(event.target).prev(".sectionId").text());
             console.log(vm.sectionData.Id);
             vm.IndexService.deleteSection(vm.sectionData.Id)
