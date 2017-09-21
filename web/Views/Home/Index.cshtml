@@ -8,15 +8,20 @@ else
 
 
     <div ng-controller="IndexController as IndexCtr" class="ng-cloak">
-        <h3>TO DO LIST</h3>
+        <h1>My Stuff</h1>
         <button class="btn btn-primary" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
         <div class="SectionContainer container">
             <div ng-repeat="x in IndexCtr.userSections" class="row sectionRow">
-                <h1><b>{{x.Section}}</b></h1>
+                <h2><b>{{x.Section}}</b></h2>
+                <button type="button" class="btn btn-basic" ng-click="IndexCtr.addTaskBtn($event)">Add Task</button>
                 <p class="sectionId">{{x.Id}}</p>
                 <button type="button" class="btn btn-danger deleteButton" ng-click="IndexCtr.deleteSectionBtn($event)">Delete</button>
                 <button type="button" class="btn btn-info editButton" ng-click="IndexCtr.editSectionBtn($event)">Edit</button>
-            </div>
+                <div ng-repeat="y in IndexCtr.userTasks| filter:{'SectionId':x.Id}" class="row taskRow">
+                    <li class="taskListItem"><b>{{y.Task}}</b></li>
+                    <p class="taskId">{{y.Id}}</p>
+                    </div>
+                </div>
             <input id="hiddenUserId" value="@HttpContext.Current.User.Identity.GetUserId()">
         </div>
     </div>
@@ -29,10 +34,11 @@ else
 @section scripts {
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/mainApp.js"></script>
-
     <script src="~/Scripts/ngDirectives/SectionInput.js"></script>
     <script src="~/Scripts/ngDirectives/SectionText.js"></script>
     <script src="~/Scripts/ngDirectives/EditSectionInput.js"></script>
+    <script src="~/Scripts/ngDirectives/TaskInput.js"></script>
+
 
     <script src="~/Scripts/Index/IndexService.js"></script>
     <script src="~/Scripts/Index/IndexController.js"></script>

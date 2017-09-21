@@ -1,5 +1,5 @@
 ﻿(function () {
     'use strict';
     angular
-        .module('mainApp', ["sectionInputDirectiveInject", "sectionTextDirectiveInject", "editSectionInputDirectiveInject"]);
+        .module('mainApp', ["sectionInputDirectiveInject", "sectionTextDirectiveInject", "editSectionInputDirectiveInject", "taskInputDirectiveInject"]);
 })();

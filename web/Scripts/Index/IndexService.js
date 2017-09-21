@@ -12,7 +12,10 @@
             getSectionByUserId: _getSectionByUserId,
             postSection: _postSection,
             deleteSection: _deleteSection,
-            putSection: _putSection
+            putSection: _putSection,
+
+            getTaskBySectionId: _getTaskBySectionId,
+            postTask: _postTask
         };
 
         function _getSectionByUserId(UserId) {
@@ -58,6 +61,28 @@
         function _putSectionFailed(error) {
             return $q.reject(error);
         }
-       
+
+        function _postTask(data) {
+            return $http.post('/api/section/task', data, { withCredentials: true })
+                .then(_postTaskComplete, _postTaskFailed);
+        }
+        function _postTaskComplete(response) {
+            return response;
+        }
+        function _postTaskFailed(error) {
+            return $q.reject(error);
+        }
+
+        function _getTaskBySectionId(SectionId) {
+            return $http.get('/api/section/task/' + SectionId, { withCredentials: true })
+                .then(_getTaskBySectionIdComplete, _getTaskBySectionIdFailed);
+        }
+        function _getTaskBySectionIdComplete(response) {
+            return response;
+        }
+        function _getTaskBySectionIdFailed(error) {
+            return $q.reject(error);
+        }
+
     }
 })();

@@ -26,6 +26,15 @@
         vm.putSection = _putSection;
         vm.putSectionData = {};
 
+        vm.userTasks = [];
+        vm.addTaskBtn = _addTaskBtn;
+        vm.AddingTask;
+        vm.cancelTaskBtn = _cancelTaskBtn;
+        vm.submitTask = _submitTask;
+        vm.taskData = {};
+        vm.newTask;
+        
+
 
         function _init() {
             vm.currentUserName = $("#hiddenUserId").val();
@@ -35,15 +44,31 @@
                 .then(_getSectionByUserIdSuccess, _getSectionByUserIdError)
         }
         function _getSectionByUserIdSuccess(response) {
-            console.log(response.data.Items);
-            vm.userSections = response.data.Items;
+            var sections = response.data.Items
+            console.log(sections);
+            vm.userSections = sections;
+            for (var i = 0; i < sections.length; i++) {
+                console.log(sections[i].Id)
+                vm.IndexService.getTaskBySectionId(sections[i].Id)
+                    .then(_getTaskBySectionIdSuccess, _getTaskBySectionIdError)
+            }
         }
         function _getSectionByUserIdError(error) {
             console.log(error);
         }
+        function _getTaskBySectionIdSuccess(response) {
+            for (var i = 0; i < response.data.Items.length; i++) {
+                vm.userTasks.push(response.data.Items[i]);
+            }
+        }
+        function _getTaskBySectionIdError(response) {
+            console.log(error);
+        }
+
+
 
         function _addSectionBtn() {
-            if (!vm.AddingSection) {
+            if (!vm.AddingSection && !vm.AddingTask) {
                 var compiledSection = $compile("<Section-Input></Section-Input>")($scope);
                 $(".SectionContainer").append(compiledSection);
                 vm.AddingSection = true;
@@ -53,7 +78,7 @@
         function _cancelSectionBtn(event) {
             $(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
             $(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
-            $(event.target).closest(".sectionRow").remove();
+            $(event.target).closest("edit-section-input").remove();
             vm.AddingSection = false;
         }
 
@@ -86,11 +111,13 @@
         }
 
         function _deleteSectionBtn(event) {
-            $(event.target).attr('id', 'deleteClicked');
-            vm.sectionData.Id = parseInt($(event.target).prev(".sectionId").text());
-            console.log(vm.sectionData.Id);
-            vm.IndexService.deleteSection(vm.sectionData.Id)
-                .then(_deleteSectionSuccess, _deleteSectionError)
+            if (!vm.AddingTask) {
+                $(event.target).attr('id', 'deleteClicked');
+                vm.sectionData.Id = parseInt($(event.target).prev(".sectionId").text());
+                console.log(vm.sectionData.Id);
+                vm.IndexService.deleteSection(vm.sectionData.Id)
+                    .then(_deleteSectionSuccess, _deleteSectionError)
+            }
         }
         function _deleteSectionSuccess(response) {
             $("#deleteClicked").closest(".sectionRow").remove();
@@ -103,9 +130,11 @@
         }
 
         function _editSectionBtn(event) {
-            $(event.target).closest(".sectionRow").addClass("hidden");
-            var compiledSection = $compile("<Edit-Section-Input></Edit-Section-Input>")($scope);
-            $(event.target).closest(".sectionRow").after(compiledSection);
+            if (!vm.AddingTask) {
+                $(event.target).closest(".sectionRow").addClass("hidden");
+                var compiledSection = $compile("<Edit-Section-Input></Edit-Section-Input>")($scope);
+                $(event.target).closest(".sectionRow").after(compiledSection);
+            }
         }
 
         function _putSection() {
@@ -137,6 +166,46 @@
 
         }
         function _putSectionError(error) {
+            console.log(error);
+        }
+
+
+
+
+        function _addTaskBtn(event) {
+            if (!vm.AddingTask) {
+                var compiledSection = $compile("<Task-Input></Task-Input>")($scope);
+                $(event.target).closest(".sectionRow").append(compiledSection);
+                vm.AddingTask = true;
+            }
+        }
+
+        function _cancelTaskBtn(event) {
+            $(event.target).closest("task-input").remove();
+            vm.AddingTask = false;
+        }
+
+        function _submitTask(event) {
+            var userInput = $(event.target).prev(".taskInput").val();
+            if (!userInput) {
+                $(event.target).closest(".taskRow").remove();
+                vm.AddingTask = false;
+
+            } else {
+                vm.newTask = userInput;
+                vm.taskData.Task = userInput;
+                vm.taskData.SectionId = parseInt($(event.target).closest(".sectionRow").find(".sectionId").text());
+                $(event.target).closest(".taskRow").remove();
+                vm.AddingTask = false;
+                console.log(vm.taskData); 
+                vm.IndexService.postTask(vm.taskData)
+                    .then(_postTaskSuccess, _postTaskError)
+            }
+        }
+        function _postTaskSuccess(response) {
+            console.log(response);
+        }
+        function _postTaskError(error) {
             console.log(error);
         }
     }
