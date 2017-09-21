@@ -105,7 +105,7 @@ namespace ToDoList.services
                 }
             }
         }
-        public void Delete(ListSectionUpdateRequest model)
+        public void Delete(int id)
         {
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -113,7 +113,7 @@ namespace ToDoList.services
                 using (SqlCommand cmd = new SqlCommand("dbo.Section_Delete", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Id", model.Id);
+                    cmd.Parameters.AddWithValue("@Id", id);
                     cmd.ExecuteNonQuery();
                 }
             }

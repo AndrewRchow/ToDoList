@@ -1,8 +1,8 @@
 ﻿(function () {
     "use strict";
     angular
-        .module("sectionDirectiveInject", [])
-        .directive("sectionDirective", function () {
+        .module("sectionInputDirectiveInject", [])
+        .directive("sectionInput", function () {
 
             return {
                 template: `<div class="row sectionRow">

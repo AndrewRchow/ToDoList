@@ -1,14 +1,26 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Microsoft.AspNet.Identity
+@if (!Request.IsAuthenticated)
+{
+    <h1>Please Login</h1>
 }
-<div>
-    <div ng-controller="IndexController as IndexCtr">
+else
+{
+
+
+    <div ng-controller="IndexController as IndexCtr" ng-cloak>
         <h3>TO DO LIST</h3>
         <button class="btn btn-primary" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
         <div class="SectionContainer container">
+            <div ng-repeat="x in IndexCtr.userSections" class="row sectionRow">
+                    <h1><b>{{x.Section}}</b></h1>
+                    <p class="sectionId">{{x.Id}}</p>
+                    <button type="button" class="btn btn-danger deleteButton" ng-click="IndexCtr.deleteSectionBtn($event)">Delete</button>
+            </div>
+            <input id="hiddenUserId" value="@HttpContext.Current.User.Identity.GetUserId()">
         </div>
     </div>
-</div>
+
+}
 
 
 
@@ -16,7 +28,10 @@
 @section scripts {
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/mainApp.js"></script>
-    <script src="~/Scripts/Index/SectionDirective.js"></script>
+
+<script src="~/Scripts/ngDirectives/SectionInput.js"></script>
+<script src="~/Scripts/ngDirectives/SectionText.js"></script>
+
     <script src="~/Scripts/Index/IndexService.js"></script>
     <script src="~/Scripts/Index/IndexController.js"></script>
 }

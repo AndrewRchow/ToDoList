@@ -8,3 +8,21 @@
     box-sizing: border-box;
     max-width:500px;
 }
+
+h1 {
+    display: inline-block;
+}
+
+.deleteButton {
+    float:right;
+}
+
+#hiddenUserId {
+    display:none;
+    height:0px;
+}
+
+.sectionId {
+    /*display: none;
+    height: 0px;*/
+}

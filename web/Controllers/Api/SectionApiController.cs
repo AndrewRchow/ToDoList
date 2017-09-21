@@ -69,12 +69,16 @@ namespace ToDoList.web.Controllers.Api
             }
         }
 
-        [Route, HttpDelete]
-        public HttpResponseMessage Delete(ListSectionUpdateRequest model)
+        [Route("{id:int}"), HttpDelete]
+        public HttpResponseMessage Delete(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
             try
             {
-                sectionService.Delete(model);
+                sectionService.Delete(id);
                 return Request.CreateResponse(HttpStatusCode.OK, new SuccessResponse());
             }
             catch (Exception ex)
