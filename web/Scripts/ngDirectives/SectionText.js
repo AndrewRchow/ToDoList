@@ -6,7 +6,7 @@
 
             return {
                 template: ` <div class="row sectionRow">
-                                <h2><b>{{::IndexCtr.newSection}}</b></h2>
+                                <h2>{{::IndexCtr.newSection}}</h2>
                                 <button type="button" class="btn btn-basic" ng-click="IndexCtr.addTaskBtn($event)">Add Task</button>
                                 <p class="sectionId">{{::IndexCtr.newSectionId}}</p>
                                  <button type="button" class="btn btn-danger deleteButton" ng-click="IndexCtr.deleteSectionBtn($event)">Delete</button>

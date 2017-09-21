@@ -12,8 +12,9 @@
     max-width:500px;
 }
 
-h2 {
+.mainContainer h2 {
     display: inline-block;
+    font-weight: bold;
 }
 
 .editButton {
@@ -41,7 +42,7 @@ h2 {
     height: 0px;
 }
 
-.sectionRow {
+.borderTop {
     border-top:solid;
 }
 
@@ -72,3 +73,22 @@ h2 {
     display: inline-block;
 }
 
+.taskInput {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.taskInputContainer {
+    margin-bottom: 2%;
+}
+
+#addSectionClickButton {
+    margin-bottom: 2%;
+}
+
+.mainContainer .addTaskBtn {
+    margin-bottom: 1%;
+    margin-left: 1%;
+}

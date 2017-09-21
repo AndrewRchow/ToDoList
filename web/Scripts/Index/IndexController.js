@@ -137,45 +137,52 @@
 
         function _editSectionBtn(event) {
             if (!vm.AddingTask) {
-                $(event.target).closest(".sectionRow").addClass("hidden");
+                $(event.target).prevAll("h2:first").addClass("hidden");
+                $(event.target).prevAll(".btn-basic").addClass("hidden");
                 var compiledSection = $compile("<Edit-Section-Input></Edit-Section-Input>")($scope);
-                $(event.target).closest(".sectionRow").after(compiledSection);
+                $(event.target).prevAll(".btn-basic").after(compiledSection);
+                //$(event.target).closest(".sectionRow").after(compiledSection);
             }
         }
 
         function _cancelEditSectionBtn(event) {
-            $(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
-            $(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
+            //$(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
+            //$(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
+            $(event.target).closest("edit-section-input").prevAll("h2:first").removeClass("hidden");
+            $(event.target).closest("edit-section-input").prevAll(".btn-basic").removeClass("hidden");
             $(event.target).closest("edit-section-input").remove();
             vm.AddingSection = false;
-            console.log('hi');
         }
 
         function _putSection() {
-
             var userInput = $(event.target).prev(".sectionInput").val();
             if (!userInput) {
-                $(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
-                $(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
-                $(event.target).closest(".sectionRow").remove();
+                $(event.target).closest("edit-section-input").prevAll("h2:first").removeClass("hidden");
+                $(event.target).closest("edit-section-input").prevAll(".btn-basic").removeClass("hidden");
+                $(event.target).closest("edit-section-input").remove();
                 vm.AddingSection = false;
             } else {
-                $(event.target).closest("edit-section-input").prev(".sectionRow").attr('id', 'putClicked');
+                //$(event.target).closest("edit-section-input").prev(".sectionRow").attr('id', 'putClicked');
                 vm.putSectionData.Section = $(event.target).prev("input").val();
-                vm.putSectionData.Id = parseInt($(event.target).closest("edit-section-input").prev(".sectionRow").find(".sectionId").text());
-                vm.newSection = vm.putSectionData.Section;
-                vm.newSectionId = vm.putSectionData.Id;
-
+                vm.putSectionData.Id = parseInt($(event.target).closest("edit-section-input").next(".sectionId").text());
+                var newSection = vm.putSectionData.Section;
+                //vm.newSectionId = vm.putSectionData.Id;
+                $(event.target).closest("edit-section-input").prevAll("h2:first").text(newSection);
+                $(event.target).closest("edit-section-input").prevAll("h2:first").removeClass("hidden");
+                $(event.target).closest("edit-section-input").prevAll(".btn-basic").removeClass("hidden");
+                $(event.target).closest("edit-section-input").remove();
+                vm.AddingSection = false;
+                console.log(vm.putSectionData);
                 vm.IndexService.putSection(vm.putSectionData)
                     .then(_putSectionSuccess, _putSectionError)
             }
         }
         function _putSectionSuccess(response) {
-            var compiledSection = $compile("<Section-Text></Section-Text>")($scope);
-            $("#putClicked").next("edit-section-input").remove();
-            $("#putClicked").after(compiledSection);
+            //var compiledSection = $compile("<Section-Text></Section-Text>")($scope);
+            //$("#putClicked").next("edit-section-input").remove();
+            //$("#putClicked").after(compiledSection);
 
-            $("#putClicked").removeAttr("id");
+            //$("#putClicked").removeAttr("id");
             console.log(response);
 
         }

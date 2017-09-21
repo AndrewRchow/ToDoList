@@ -5,18 +5,18 @@
 }
 else
 {
-    <div ng-controller="IndexController as IndexCtr" class="ng-cloak">
+    <div class="mainContainer ng-cloak" ng-controller="IndexController as IndexCtr">
         <h1>My Stuff</h1>
         <button class="btn btn-primary" id="addSectionClickButton" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
         <div class="SectionContainer container">
-            <div ng-repeat="x in IndexCtr.userSections" class="row sectionRow">
-                <h2><b>{{x.Section}}</b></h2>
-                <button type="button" class="btn btn-basic" ng-click="IndexCtr.addTaskBtn($event)">Add Task</button>
+            <div ng-repeat="x in IndexCtr.userSections" class="row sectionRow borderTop">
+                <h2>{{x.Section}}</h2>
+                <button type="button" class="btn btn-basic addTaskBtn" ng-click="IndexCtr.addTaskBtn($event)">Add Task</button>
                 <p class="sectionId">{{x.Id}}</p>
                 <button type="button" class="btn btn-danger deleteButton" ng-click="IndexCtr.deleteSectionBtn($event)">Delete</button>
                 <button type="button" class="btn btn-info editButton" ng-click="IndexCtr.editSectionBtn($event)">Edit</button>
                 <div ng-repeat="y in IndexCtr.userTasks| filter:{'SectionId':x.Id}" class="row taskRow">
-                    <h3 class="taskListItem"><span class="glyphicon glyphicon-menu-right"></span>{{y.Task}}</h3>
+                    <h3 class="taskListItem col-md-11"><span class="glyphicon glyphicon-menu-right"></span>{{y.Task}}</h3>
                     <p class="taskId">{{y.Id}}</p>
                     <button type="button" class="btn btn-info editTaskButton" ng-click="IndexCtr.editTaskBtn($event)"></button>
                     <button type="button" class="btn btn-danger deleteTaskButton" ng-click="IndexCtr.deleteTaskBtn($event)"></button>
