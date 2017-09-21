@@ -45,10 +45,30 @@ h2 {
     border-top:solid;
 }
 
-.taskRow {
+.sectionRow .taskRow {
     margin-left:10%;
 }
 
-.taskListItem {
-    /*font-size: 400%;*/
+.sectionRow .ng-scope .taskRow {
+    margin-left:10%;
 }
+
+
+.taskListItem {
+    display: inline-block;
+}
+
+.taskId {
+    display: none;
+    height: 0px;
+}
+
+.editTaskButton {
+    display: inline-block;
+    margin-left: 1%;
+}
+
+.deleteTaskButton {
+    display: inline-block;
+}
+

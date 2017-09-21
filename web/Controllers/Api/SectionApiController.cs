@@ -140,12 +140,12 @@ namespace ToDoList.web.Controllers.Api
             }
         }
 
-        [Route("task"), HttpDelete]
-        public HttpResponseMessage Delete2(ListTaskUpdateRequest model)
+        [Route("task/{id:int}"), HttpDelete]
+        public HttpResponseMessage Delete2(int id)
         {
             try
             {
-                sectionService.Delete2(model);
+                sectionService.Delete2(id);
                 return Request.CreateResponse(HttpStatusCode.OK, new SuccessResponse());
             }
             catch (Exception ex)

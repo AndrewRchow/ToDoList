@@ -14,6 +14,6 @@ namespace ToDoList.services
         List<ListTask> SelectBySectionId(int id);
         int Insert2(ListTaskAddRequest model);
         void Update2(ListTaskUpdateRequest model);
-        void Delete2(ListTaskUpdateRequest model);
+        void Delete2(int id);
     }
 }

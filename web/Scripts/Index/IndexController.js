@@ -23,6 +23,7 @@
         vm.editSectionBtn = _editSectionBtn;
         vm.editSectionText;
         vm.cancelSectionBtn = _cancelSectionBtn;
+        vm.cancelEditSectionBtn = _cancelEditSectionBtn;
         vm.putSection = _putSection;
         vm.putSectionData = {};
 
@@ -33,6 +34,8 @@
         vm.submitTask = _submitTask;
         vm.taskData = {};
         vm.newTask;
+        vm.deleteTaskBtn = _deleteTaskBtn;
+       
         
 
 
@@ -76,10 +79,9 @@
         }
 
         function _cancelSectionBtn(event) {
-            $(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
-            $(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
-            $(event.target).closest("edit-section-input").remove();
+            $(event.target).closest("section-input").remove();
             vm.AddingSection = false;
+            console.log('hi');
         }
 
         function _submitSection(event) {
@@ -137,6 +139,14 @@
             }
         }
 
+        function _cancelEditSectionBtn(event) {
+            $(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
+            $(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
+            $(event.target).closest("edit-section-input").remove();
+            vm.AddingSection = false;
+            console.log('hi');
+        }
+
         function _putSection() {
 
             var userInput = $(event.target).prev(".sectionInput").val();
@@ -174,6 +184,7 @@
 
         function _addTaskBtn(event) {
             if (!vm.AddingTask) {
+                $(event.target).closest(".sectionRow").attr('id', 'sectionToAppendTo');
                 var compiledSection = $compile("<Task-Input></Task-Input>")($scope);
                 $(event.target).closest(".sectionRow").append(compiledSection);
                 vm.AddingTask = true;
@@ -181,6 +192,7 @@
         }
 
         function _cancelTaskBtn(event) {
+            $("#sectionToAppendTo").removeAttr("id");
             $(event.target).closest("task-input").remove();
             vm.AddingTask = false;
         }
@@ -188,14 +200,15 @@
         function _submitTask(event) {
             var userInput = $(event.target).prev(".taskInput").val();
             if (!userInput) {
-                $(event.target).closest(".taskRow").remove();
+                $("#sectionToAppendTo").removeAttr("id");
+                $(event.target).closest(".task-input").remove();
                 vm.AddingTask = false;
 
             } else {
                 vm.newTask = userInput;
                 vm.taskData.Task = userInput;
                 vm.taskData.SectionId = parseInt($(event.target).closest(".sectionRow").find(".sectionId").text());
-                $(event.target).closest(".taskRow").remove();
+                $(event.target).closest("task-input").remove();
                 vm.AddingTask = false;
                 console.log(vm.taskData); 
                 vm.IndexService.postTask(vm.taskData)
@@ -203,10 +216,33 @@
             }
         }
         function _postTaskSuccess(response) {
-            console.log(response);
+            console.log(response.data.Item);
+            vm.newTaskId = response.data.Item;
+            var compiledSection = $compile("<Task-Text></Task-Text>")($scope);
+            $("#sectionToAppendTo").append(compiledSection);
+            $("#sectionToAppendTo").removeAttr("id");
         }
         function _postTaskError(error) {
             console.log(error);
+            $("#sectionToAppendTo").removeAttr("id");
         }
+
+        function _deleteTaskBtn(event) {
+            $(event.target).attr('id', 'deleteClicked');
+            vm.taskData.Id = $(event.target).prevAll(".taskId:first").text();
+            console.log(vm.taskData.Id);
+            vm.IndexService.deleteTask(vm.taskData.Id)
+                .then(_deleteTaskSuccess, _deleteTaskError)
+        }
+        function _deleteTaskSuccess(response) {
+            $("#deleteClicked").closest(".taskRow").remove();
+            console.log(response);
+
+        }
+        function _deleteTaskError(error) {
+            $("#deleteClicked").removeAttr("id");
+            console.log(error);
+        }
+
     }
 })();

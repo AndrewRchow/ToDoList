@@ -18,9 +18,12 @@ else
                 <button type="button" class="btn btn-danger deleteButton" ng-click="IndexCtr.deleteSectionBtn($event)">Delete</button>
                 <button type="button" class="btn btn-info editButton" ng-click="IndexCtr.editSectionBtn($event)">Edit</button>
                 <div ng-repeat="y in IndexCtr.userTasks| filter:{'SectionId':x.Id}" class="row taskRow">
-                    <li class="taskListItem"><b>{{y.Task}}</b></li>
+                    <h3 class="taskListItem"><span class="glyphicon glyphicon-menu-right"></span>{{y.Task}}</h3>
                     <p class="taskId">{{y.Id}}</p>
+                    <button type="button" class="btn btn-info editTaskButton" ng-click=""></button>
+                    <button type="button" class="btn btn-danger deleteTaskButton" ng-click="IndexCtr.deleteTaskBtn($event)"></button>
                     </div>
+
                 </div>
             <input id="hiddenUserId" value="@HttpContext.Current.User.Identity.GetUserId()">
         </div>
@@ -38,7 +41,7 @@ else
     <script src="~/Scripts/ngDirectives/SectionText.js"></script>
     <script src="~/Scripts/ngDirectives/EditSectionInput.js"></script>
     <script src="~/Scripts/ngDirectives/TaskInput.js"></script>
-
+    <script src="~/Scripts/ngDirectives/TaskText.js"></script>
 
     <script src="~/Scripts/Index/IndexService.js"></script>
     <script src="~/Scripts/Index/IndexController.js"></script>

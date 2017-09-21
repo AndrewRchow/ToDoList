@@ -15,7 +15,8 @@
             putSection: _putSection,
 
             getTaskBySectionId: _getTaskBySectionId,
-            postTask: _postTask
+            postTask: _postTask,
+            deleteTask: _deleteTask
         };
 
         function _getSectionByUserId(UserId) {
@@ -84,5 +85,15 @@
             return $q.reject(error);
         }
 
+        function _deleteTask(id) {
+            return $http.delete('/api/section/task/' + id, { withCredentials: true })
+                .then(_deleteTaskComplete, _deleteTaskFailed);
+        }
+        function _deleteTaskComplete(response) {
+            return response;
+        }
+        function _deleteTaskFailed(error) {
+            return $q.reject(error);
+        }
     }
 })();
