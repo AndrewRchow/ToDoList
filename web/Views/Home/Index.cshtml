@@ -5,11 +5,9 @@
 }
 else
 {
-
-
     <div ng-controller="IndexController as IndexCtr" class="ng-cloak">
         <h1>My Stuff</h1>
-        <button class="btn btn-primary" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
+        <button class="btn btn-primary" id="addSectionClickButton" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
         <div class="SectionContainer container">
             <div ng-repeat="x in IndexCtr.userSections" class="row sectionRow">
                 <h2><b>{{x.Section}}</b></h2>
@@ -20,7 +18,7 @@ else
                 <div ng-repeat="y in IndexCtr.userTasks| filter:{'SectionId':x.Id}" class="row taskRow">
                     <h3 class="taskListItem"><span class="glyphicon glyphicon-menu-right"></span>{{y.Task}}</h3>
                     <p class="taskId">{{y.Id}}</p>
-                    <button type="button" class="btn btn-info editTaskButton" ng-click=""></button>
+                    <button type="button" class="btn btn-info editTaskButton" ng-click="IndexCtr.editTaskBtn($event)"></button>
                     <button type="button" class="btn btn-danger deleteTaskButton" ng-click="IndexCtr.deleteTaskBtn($event)"></button>
                     </div>
 
@@ -28,11 +26,9 @@ else
             <input id="hiddenUserId" value="@HttpContext.Current.User.Identity.GetUserId()">
         </div>
     </div>
-
+    <div id="bottomOfPage">
+    </div>
 }
-
-
-
 
 @section scripts {
     <script src="~/Scripts/angular.min.js"></script>
@@ -42,9 +38,19 @@ else
     <script src="~/Scripts/ngDirectives/EditSectionInput.js"></script>
     <script src="~/Scripts/ngDirectives/TaskInput.js"></script>
     <script src="~/Scripts/ngDirectives/TaskText.js"></script>
-
+    <script src="~/Scripts/ngDirectives/EditTaskInput.js"></script>
     <script src="~/Scripts/Index/IndexService.js"></script>
     <script src="~/Scripts/Index/IndexController.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", "#addSectionClickButton", function () {
+                $('html, body').animate({
+                    scrollTop: $("#bottomOfPage").offset().top
+                }, 400);
+            });
+        });
+    </script>
 }
 
 

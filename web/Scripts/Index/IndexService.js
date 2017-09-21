@@ -16,7 +16,8 @@
 
             getTaskBySectionId: _getTaskBySectionId,
             postTask: _postTask,
-            deleteTask: _deleteTask
+            deleteTask: _deleteTask,
+            putTask: _putTask
         };
 
         function _getSectionByUserId(UserId) {
@@ -93,6 +94,17 @@
             return response;
         }
         function _deleteTaskFailed(error) {
+            return $q.reject(error);
+        }
+
+        function _putTask(data) {
+            return $http.put('/api/section/task', data, { withCredentials: true })
+                .then(_putTaskComplete, _putTaskFailed);
+        }
+        function _putTaskComplete(response) {
+            return response;
+        }
+        function _putTaskFailed(error) {
             return $q.reject(error);
         }
     }

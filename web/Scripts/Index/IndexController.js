@@ -35,6 +35,10 @@
         vm.taskData = {};
         vm.newTask;
         vm.deleteTaskBtn = _deleteTaskBtn;
+        vm.editTaskBtn = _editTaskBtn;
+        vm.cancelEditTaskBtn = _cancelEditTaskBtn;
+        vm.putTask = _putTask;
+        vm.putTaskData = {};
        
         
 
@@ -176,6 +180,7 @@
 
         }
         function _putSectionError(error) {
+            $("#putClicked").removeAttr("id");
             console.log(error);
         }
 
@@ -242,6 +247,56 @@
         function _deleteTaskError(error) {
             $("#deleteClicked").removeAttr("id");
             console.log(error);
+        }
+
+        function _editTaskBtn(event) {
+            if (!vm.AddingTask) {
+                $(event.target).closest(".taskRow").addClass("hidden");
+                var compiledSection = $compile("<Edit-Task-Input></Edit-Task-Input>")($scope);
+                $(event.target).closest(".taskRow").after(compiledSection);
+                vm.AddingTask = true;
+            }
+        }
+        function _cancelEditTaskBtn(event) {
+            //$(event.target).closest("section-input").prev(".taskRow").removeClass("hidden");
+            $(event.target).closest("edit-task-input").prev(".taskRow").removeClass("hidden");
+            $(event.target).closest("edit-task-input").remove();
+            vm.AddingTask = false;
+        }
+
+        function _putTask(event) {
+
+            var userInput = $(event.target).prev(".taskInput").val();
+            if (!userInput) {
+                $(event.target).closest("edit-task-input").prev(".taskRow").removeClass("hidden");
+                $(event.target).closest("edit-task-input").remove();
+                vm.AddingTask = false;
+            } else {
+                $(event.target).closest("edit-task-input").prev(".taskRow").attr('id', 'putTaskClicked');
+                vm.putTaskData.Task = $(event.target).prev("input").val();
+                vm.putTaskData.Id = parseInt($(event.target).closest("edit-task-input").prev(".taskRow").find(".taskId").text());
+                vm.newTask = vm.putTaskData.Task;
+                vm.newTaskId = vm.putTaskData.Id;
+                console.log(vm.putTaskData);
+                //$(event.target).closest("task-text").remove();
+                vm.IndexService.putTask(vm.putTaskData)
+                    .then(_putTaskSuccess, _putTaskError)
+            }
+        }
+        function _putTaskSuccess(response) {
+            var compiledSection = $compile("<Task-Text></Task-Text>")($scope);
+            $("#putTaskClicked").next("edit-task-input").remove();            
+            $("#putTaskClicked").after(compiledSection);
+            $("#putTaskClicked").remove();
+            console.log(response);
+            vm.AddingTask = false;
+        }
+        function _putTaskError(error) {
+            $("#putTaskClicked").closest("edit-task-input").prev(".taskRow").removeClass("hidden");
+            $("#putTaskClicked").closest("edit-task-input").remove();
+            $("#putTaskClicked").removeAttr("id");
+            console.log(error);
+            vm.AddingTask = false;
         }
 
     }

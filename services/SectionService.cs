@@ -184,7 +184,6 @@ namespace ToDoList.services
                 using (SqlCommand cmd = new SqlCommand("dbo.Task_Update", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SectionId", model.SectionId);
                     cmd.Parameters.AddWithValue("@Task", model.Task);
                     cmd.Parameters.AddWithValue("@Id", model.Id);
                     cmd.ExecuteNonQuery();
