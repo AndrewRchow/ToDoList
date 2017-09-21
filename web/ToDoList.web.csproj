@@ -228,6 +228,7 @@
     <Content Include="Scripts\Index\IndexController.js" />
     <Content Include="Scripts\Index\IndexService.js" />
     <Content Include="Scripts\Index\IndexStylecss.css" />
+    <Content Include="Scripts\ngDirectives\EditSectionInput.js" />
     <Content Include="Scripts\ngDirectives\SectionText.js" />
     <Content Include="Scripts\ngDirectives\SectionInput.js" />
     <Content Include="Scripts\mainApp.js" />

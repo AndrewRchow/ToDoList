@@ -11,7 +11,8 @@
         return {
             getSectionByUserId: _getSectionByUserId,
             postSection: _postSection,
-            deleteSection: _deleteSection
+            deleteSection: _deleteSection,
+            putSection: _putSection
         };
 
         function _getSectionByUserId(UserId) {
@@ -44,6 +45,17 @@
             return response;
         }
         function _deleteSectionFailed(error) {
+            return $q.reject(error);
+        }
+
+        function _putSection(data) {
+            return $http.put('/api/section/', data, { withCredentials: true })
+                .then(_putSectionComplete, _putSectionFailed);
+        }
+        function _putSectionComplete(response) {
+            return response;
+        }
+        function _putSectionFailed(error) {
             return $q.reject(error);
         }
        

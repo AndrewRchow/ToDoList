@@ -1,4 +1,7 @@
-﻿.sectionInput {
+﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+.sectionInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -13,9 +16,18 @@ h1 {
     display: inline-block;
 }
 
-.deleteButton {
-    float:right;
+.editButton {
+    float: right;
+    display: inline-block;
+    margin-right:1%;
 }
+
+.deleteButton {
+    float: right;
+    display: inline-block;
+}
+
+
 
 #hiddenUserId {
     display:none;
