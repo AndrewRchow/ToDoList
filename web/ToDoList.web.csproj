@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ScrapingApiController.cs" />
     <Compile Include="Controllers\Api\SectionApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -228,6 +229,7 @@
     <Content Include="Scripts\Index\IndexController.js" />
     <Content Include="Scripts\Index\IndexService.js" />
     <Content Include="Scripts\Index\IndexStylecss.css" />
+    <Content Include="Scripts\mainAppWS.js" />
     <Content Include="Scripts\ngDirectives\EditSectionInput.js" />
     <Content Include="Scripts\ngDirectives\EditTaskInput.js" />
     <Content Include="Scripts\ngDirectives\SectionText.js" />
@@ -245,6 +247,9 @@
     <Content Include="Scripts\ngDirectives\TaskText.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Scraping\ScrapingController.js" />
+    <Content Include="Scripts\Scraping\ScrapingService.js" />
+    <None Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -256,7 +261,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\WebScraping.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />

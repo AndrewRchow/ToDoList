@@ -104,3 +104,6 @@ C:\REPOS\github\ToDoList\web\bin\Microsoft.AI.Web.xml
 C:\REPOS\github\ToDoList\web\obj\Debug\ToDoList.web.csprojResolveAssemblyReference.cache
 C:\REPOS\github\ToDoList\web\obj\Debug\ToDoList.web.dll
 C:\REPOS\github\ToDoList\web\obj\Debug\ToDoList.web.pdb
+C:\REPOS\github\ToDoList\web\bin\HtmlAgilityPack.dll
+C:\REPOS\github\ToDoList\web\bin\HtmlAgilityPack.pdb
+C:\REPOS\github\ToDoList\web\bin\HtmlAgilityPack.xml

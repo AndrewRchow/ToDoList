@@ -13,7 +13,7 @@ namespace ToDoList.web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult WebScraping()
         {
             ViewBag.Message = "Your application description page.";
 

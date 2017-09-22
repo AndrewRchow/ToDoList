@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div ng-controller="ScrapingController as ScrapingCtr">
+
+    <h2>Here is a random example of web scraping</h2>
+    <h2>It is going to Imgur and getting all the pictures of doggos</h2>
+    <div ng-repeat="x in ScrapingCtr.shibas" style="display:inline">
+        <img src="{{x}}" alt="much wow" height="150" width="150" >
+    </div>
+</div>
+@section scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/mainAppWS.js"></script>
+    <script src="~/Scripts/Scraping/ScrapingService.js"></script>
+    <script src="~/Scripts/Scraping/ScrapingController.js"></script>
+}
