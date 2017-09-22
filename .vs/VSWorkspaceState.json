@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\web",
+    "\\web\\Controllers",
+    "\\web\\Properties",
+    "\\web\\Scripts",
+    "\\web\\Scripts\\Index",
+    "\\web\\Scripts\\ngDirectives",
+    "\\web\\Views",
+    "\\web\\Views\\Home"
+  ],
+  "SelectedNode": "\\web\\Views\\Home\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}

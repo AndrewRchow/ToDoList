@@ -40,9 +40,6 @@
         vm.putTask = _putTask;
         vm.putTaskData = {};
        
-        
-
-
         function _init() {
             vm.currentUserName = $("#hiddenUserId").val();
             vm.sectionData.UserId = vm.currentUserName;
@@ -102,7 +99,6 @@
                 vm.IndexService.postSection(vm.sectionData)
                     .then(_postSectionSuccess, _postSectionError)
             }
-
         }
         function _postSectionSuccess(response) {
             console.log(response.data.Item);
@@ -136,18 +132,24 @@
         }
 
         function _editSectionBtn(event) {
-            if (!vm.AddingTask) {
+            if (!vm.AddingTask &&!vm.AddingSection) {
                 $(event.target).prevAll("h2:first").addClass("hidden");
                 $(event.target).prevAll(".btn-basic").addClass("hidden");
+                $(event.target).addClass("hidden");
+                $(event.target).prev(".deleteButton").addClass("hidden");
                 var compiledSection = $compile("<Edit-Section-Input></Edit-Section-Input>")($scope);
                 $(event.target).prevAll(".btn-basic").after(compiledSection);
+                $(event.target).attr("id", "editClicked");
                 //$(event.target).closest(".sectionRow").after(compiledSection);
+                vm.AddingSection = true;
             }
         }
 
         function _cancelEditSectionBtn(event) {
             //$(event.target).closest("section-input").prev(".sectionRow").removeClass("hidden");
             //$(event.target).closest("edit-section-input").prev(".sectionRow").removeClass("hidden");
+            $(event.target).closest("edit-section-input").nextAll(".editButton").removeClass("hidden");
+            $(event.target).closest("edit-section-input").nextAll(".deleteButton").removeClass("hidden");
             $(event.target).closest("edit-section-input").prevAll("h2:first").removeClass("hidden");
             $(event.target).closest("edit-section-input").prevAll(".btn-basic").removeClass("hidden");
             $(event.target).closest("edit-section-input").remove();
@@ -157,11 +159,17 @@
         function _putSection() {
             var userInput = $(event.target).prev(".sectionInput").val();
             if (!userInput) {
+                $("#editClicked").prev(".deleteButton").removeClass("hidden");
+                $("#editClicked").removeClass("hidden");
+                $("#editClicked").removeAttr("id");
                 $(event.target).closest("edit-section-input").prevAll("h2:first").removeClass("hidden");
                 $(event.target).closest("edit-section-input").prevAll(".btn-basic").removeClass("hidden");
                 $(event.target).closest("edit-section-input").remove();
                 vm.AddingSection = false;
             } else {
+                $("#editClicked").prev(".deleteButton").removeClass("hidden");
+                $("#editClicked").removeClass("hidden");
+                $("#editClicked").removeAttr("id");
                 //$(event.target).closest("edit-section-input").prev(".sectionRow").attr('id', 'putClicked');
                 vm.putSectionData.Section = $(event.target).prev("input").val();
                 vm.putSectionData.Id = parseInt($(event.target).closest("edit-section-input").next(".sectionId").text());
@@ -178,20 +186,12 @@
             }
         }
         function _putSectionSuccess(response) {
-            //var compiledSection = $compile("<Section-Text></Section-Text>")($scope);
-            //$("#putClicked").next("edit-section-input").remove();
-            //$("#putClicked").after(compiledSection);
-
-            //$("#putClicked").removeAttr("id");
             console.log(response);
-
         }
         function _putSectionError(error) {
             $("#putClicked").removeAttr("id");
             console.log(error);
         }
-
-
 
 
         function _addTaskBtn(event) {
@@ -215,7 +215,6 @@
                 $("#sectionToAppendTo").removeAttr("id");
                 $(event.target).closest(".task-input").remove();
                 vm.AddingTask = false;
-
             } else {
                 vm.newTask = userInput;
                 vm.taskData.Task = userInput;
@@ -272,7 +271,6 @@
         }
 
         function _putTask(event) {
-
             var userInput = $(event.target).prev(".taskInput").val();
             if (!userInput) {
                 $(event.target).closest("edit-task-input").prev(".taskRow").removeClass("hidden");
@@ -305,6 +303,5 @@
             console.log(error);
             vm.AddingTask = false;
         }
-
     }
 })();

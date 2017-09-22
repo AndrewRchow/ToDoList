@@ -4,12 +4,13 @@
 .sectionInput {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin-top: 1%;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     max-width:500px;
+    
 }
 
 .mainContainer h2 {
@@ -30,11 +31,13 @@
     margin-top: 2%;
 }
 
-
-
 #hiddenUserId {
     display:none;
     height:0px;
+}
+#hiddenUserName {
+    display: none;
+    height: 0px;
 }
 
 .sectionId {
@@ -67,17 +70,20 @@
 .editTaskButton {
     display: inline-block;
     margin-left: 1%;
+    margin-top:3%;
 }
 
 .deleteTaskButton {
     display: inline-block;
+    margin-top: 3%;
 }
 
 .taskInput {
-    margin-top: 20px;
+    margin-top: 22px;
     margin-bottom: 10px;
     width: 100%;
     max-width: 500px;
+    margin-left: 2%;
 }
 
 .taskInputContainer {
@@ -91,4 +97,9 @@
 .mainContainer .addTaskBtn {
     margin-bottom: 1%;
     margin-left: 1%;
+}
+
+#toPutUserName {
+    color:steelblue;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
