@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNet.Identity
+@if (!Request.IsAuthenticated)
+{
+    <h1>Please Login</h1>
+    <h4>For a TodoList that doesn't refresh!</h4>
+    <br/>
+    <h5>Guest user login info:</h5>
+    <p>Email: <span style="color:blue;font-weight:bold">guest@guest.com</span></p>
+    <p>Password: <span style="color:blue;font-weight:bold">Guest1!</span></p>
+}
+else
+{
+    <div class="mainContainer ng-cloak" ng-controller="IndexController as IndexCtr">
+        <h1 id="toPutUserName"></h1>
+        <button class="btn btn-primary" id="addSectionClickButton" ng-click="IndexCtr.addSectionBtn()">Add Section</button>
+        <div class="SectionContainer container">
+            <div ng-repeat="x in IndexCtr.userSections" class="row sectionRow borderTop">
+                <h2>{{x.Section}}</h2>
+                <button type="button" class="btn btn-basic addTaskBtn" ng-click="IndexCtr.addTaskBtn($event)">Add Task</button>
+                <p class="sectionId">{{x.Id}}</p>
+                <button type="button" class="btn btn-danger deleteButton" ng-click="IndexCtr.deleteSectionBtn($event)">Delete</button>
+                <button type="button" class="btn btn-info editButton" ng-click="IndexCtr.editSectionBtn($event)">Edit</button>
+                <div ng-repeat="y in IndexCtr.userTasks| filter:{'SectionId':x.Id}" class="row taskRow">
+                    <h3 class="taskListItem col-md-11"><span class="glyphicon glyphicon-menu-right"></span>{{y.Task}}</h3>
+                    <p class="taskId">{{y.Id}}</p>
+                    <button type="button" class="btn btn-info editTaskButton" ng-click="IndexCtr.editTaskBtn($event)"></button>
+                    <button type="button" class="btn btn-danger deleteTaskButton" ng-click="IndexCtr.deleteTaskBtn($event)"></button>
+                </div>
+
+            </div>
+            <input id="hiddenUserId" value="@HttpContext.Current.User.Identity.GetUserId()">
+            <input id="hiddenUserName" value="@HttpContext.Current.User.Identity.GetUserName()">
+        </div>
+    </div>
+    <div id="bottomOfPage">
+    </div>
+}
+
+@section scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/mainApp.js"></script>
+    <script src="~/Scripts/ngDirectives/SectionInput.js"></script>
+    <script src="~/Scripts/ngDirectives/SectionText.js"></script>
+    <script src="~/Scripts/ngDirectives/EditSectionInput.js"></script>
+    <script src="~/Scripts/ngDirectives/TaskInput.js"></script>
+    <script src="~/Scripts/ngDirectives/TaskText.js"></script>
+    <script src="~/Scripts/ngDirectives/EditTaskInput.js"></script>
+    <script src="~/Scripts/Index/IndexService.js"></script>
+    <script src="~/Scripts/Index/IndexController.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", "#addSectionClickButton", function () {
+                $('html, body').animate({
+                    scrollTop: $("#bottomOfPage").offset().top
+                }, 400);
+            });
+
+             var email = $("#hiddenUserName").val();
+             var name = email.substring(0, email.lastIndexOf("@@"));
+             var capitalName = name.charAt(0).toUpperCase() + name.slice(1);
+             var header = capitalName + "'s " + "ToDoList";
+             $("#toPutUserName").text(header);
+        });
+    </script>
+}
+
+

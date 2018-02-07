@@ -1,0 +1,105 @@
+﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+.sectionInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 1%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    max-width:500px;
+    
+}
+
+.mainContainer h2 {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.editButton {
+    float: right;
+    display: inline-block;
+    margin-top: 2%;
+    margin-right: 1%;
+}
+
+.deleteButton {
+    float: right;
+    display: inline-block;
+    margin-top: 2%;
+}
+
+#hiddenUserId {
+    display:none;
+    height:0px;
+}
+#hiddenUserName {
+    display: none;
+    height: 0px;
+}
+
+.sectionId {
+    display: none;
+    height: 0px;
+}
+
+.borderTop {
+    border-top:solid;
+}
+
+.sectionRow .taskRow {
+    margin-left:10%;
+}
+
+.sectionRow .ng-scope .taskRow {
+    margin-left:10%;
+}
+
+
+.taskListItem {
+    display: inline-block;
+}
+
+.taskId {
+    display: none;
+    height: 0px;
+}
+
+.editTaskButton {
+    display: inline-block;
+    margin-left: 1%;
+    margin-top:3%;
+}
+
+.deleteTaskButton {
+    display: inline-block;
+    margin-top: 3%;
+}
+
+.taskInput {
+    margin-top: 22px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin-left: 2%;
+}
+
+.taskInputContainer {
+    margin-bottom: 2%;
+}
+
+#addSectionClickButton {
+    margin-bottom: 2%;
+}
+
+.mainContainer .addTaskBtn {
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+#toPutUserName {
+    color:steelblue;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Server=aaefs692oo418a.cyxypskc1yss.us-west-1.rds.amazonaws.com;Database=ToDoList;User Id=chowlick;Password=Rooster12a!;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\REPOS\\ToDoList\\web\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

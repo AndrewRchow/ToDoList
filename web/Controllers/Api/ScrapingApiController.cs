@@ -4,9 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ToDoList.Models.Domain;
-using ToDoList.Models.Response;
-using ToDoList.services;
 
 namespace ToDoList.web.Controllers.Api
 {
